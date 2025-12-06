@@ -2,382 +2,121 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>Kategoriyalar | Zamonaviy Dasturlar</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+    <title>Kategoriyalar va Texnikalar</title>
+
     <style>
-        :root {
-            --primary-bg: linear-gradient(135deg, #3843a5 0%, #6531b6 100%);
-            --primary-color: #f4f6ff;
-            --card-bg: #422e6b;
-            --card-shadow: 0 4px 22px rgba(44, 62, 80, .23);
-            --accent: #e2ceff;
-            --link-main: #a6b5ff;
-            --link-hover: #ffd84e;
-            --header-bg: rgba(42,31,95,0.92);
-            --border-main: #5e53ac;
-            --footer-bg: #331a46;
-        }
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            font-family: 'Inter', Arial, sans-serif;
-            background: var(--primary-bg);
-            color: var(--primary-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: background-color .5s;
-        }
-        header {
-            border-bottom: 1.5px solid var(--border-main);
-            padding: 32px 0 24px;
-            text-align: center;
-            background: var(--header-bg);
-            box-shadow: 0 2px 6px rgba(44, 62, 80, .09);
-            animation: header-slide-down 0.77s cubic-bezier(.81,-0.09,.34,1.26);
-            position: relative;
-        }
-        @keyframes header-slide-down {
-            0% {
-                transform: translateY(-60px) scale(0.95);
-                opacity: 0;
-            }
-            70% {
-                opacity: 1;
-                transform: translateY(12px) scale(1.04);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        .theme-toggle-btn {
-            position: absolute;
-            top: 18px;
-            right: 24px;
-            background: linear-gradient(130deg,#353b84 65%,#6525b4 100%);
-            border: none;
-            outline: none;
-            border-radius: 50px;
-            color: #f9eeff;
-            font-size: 1.05rem;
-            padding: 8px 19px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(100,71,207,0.13);
-            transition: background .24s, color .24s, box-shadow .2s;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 0.6em;
-        }
-        .theme-toggle-btn:hover {
-            background: linear-gradient(130deg,#353b84 40%,#e2ceff 100%);
-            color: #6525b4;
-            box-shadow: 0 6px 20px rgba(124,71,207,0.16);
-        }
-        h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: .03em;
-            color: var(--accent);
-        }
-        .search-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 32px auto 0;
-            max-width: 500px;
-            width: 100%;
-            animation: search-fade-in .95s .2s cubic-bezier(.41,.4,.46,1.26) backwards;
-        }
-        @keyframes search-fade-in {
-            from { opacity: 0; transform: scale(0.96) translateY(-24px);}
-            to   { opacity: 1; transform: scale(1) translateY(0);}
-        }
-        .search-input {
-            width: 100%;
-            padding: 13px 15px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.06rem;
-            background: #2f2353;
-            color: #faf6ff;
-            font-family: inherit;
-            box-shadow: 0 1px 7px rgba(43,29,93,.08);
-            outline: none;
-            transition: background .21s, box-shadow .28s;
-        }
-        .search-input:focus {
-            background: #3e2d6e;
-            box-shadow: 0 3px 14px rgba(124,71,207,.20);
-        }
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-bottom: 32px;
-        }
-        ul.categories-list {
-            list-style: none;
-            padding: 0 0 32px;
-            margin: 24px auto 0;
-            max-width: 580px;
-            width: 100%;
-            display: grid;
-            gap: 24px;
-        }
-        ul.categories-list li {
-            background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: var(--card-shadow);
-            transition: box-shadow .32s, transform .28s, background .23s;
-            padding: 23px 30px;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            animation: item-fade-in .8s cubic-bezier(.45,0,.47,1.3) backwards;
-        }
-        ul.categories-list li:nth-child(1) { animation-delay: 0.09s;}
-        ul.categories-list li:nth-child(2) { animation-delay: 0.18s;}
-        ul.categories-list li:nth-child(3) { animation-delay: 0.27s;}
-        ul.categories-list li:nth-child(4) { animation-delay: 0.36s;}
-        ul.categories-list li:nth-child(5) { animation-delay: 0.45s;}
-        @keyframes item-fade-in {
-            0% {
-                opacity: 0;
-                transform: scale(.94) translateY(40px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-        ul.categories-list li:hover, ul.categories-list li:focus-within {
-            box-shadow: 0 10px 28px rgba(72,40,135,.23);
-            transform: scale(1.042) translateY(-2px);
-            background: linear-gradient(90deg,#6531b6 57%,#422e6b 100%);
-            z-index: 3;
-            animation: item-pop .29s cubic-bezier(.72,-0.41,.83,1.39);
-        }
-        @keyframes item-pop {
-            0% { transform: scale(1) translateY(0);}
-            65% { transform: scale(1.09) translateY(-9px);}
-            100% { transform: scale(1.042) translateY(-2px);}
-        }
-        a.category-link {
-            text-decoration: none;
-            font-size: 1.16rem;
-            font-weight: 500;
-            color: var(--link-main);
-            letter-spacing: .01em;
-            transition: color .18s;
-            display: flex;
-            align-items: center;
-            gap: 0.38em;
-        }
-        a.category-link::after {
-            content: '→';
-            font-size: 1em;
-            color: var(--accent);
-            transform: translateX(0);
-            transition: color .21s, transform .28s;
-        }
-        ul.categories-list li:hover a.category-link::after {
-            color: var(--link-hover);
-            transform: translateX(7px) scale(1.13);
-        }
-        a.category-link:hover, a.category-link:focus {
-            color: var(--link-hover);
-            text-decoration: underline;
-        }
-        .no-results {
-            color: #ff9e72;
-            background: #3e2d6e;
-            border-radius: 8px;
-            padding: 11px 18px;
-            font-weight: 600;
-            margin-top: 20px;
-            text-align: center;
-            animation: result-fadein .42s cubic-bezier(.44,.79,.61,1.43);
-        }
-        @keyframes result-fadein {
-            from { opacity: 0; transform: scale(0.96);}
-            to   { opacity: 1; transform: scale(1);}
-        }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
-            }
-            .search-container { max-width: 98vw; }
-            ul.categories-list {
-                max-width: 100%;
-                gap: 13px;
-            }
-            ul.categories-list li {
-                padding: 16px 13px;
-            }
-        }
-        footer {
-            background: var(--footer-bg);
-            border-top: 1.5px solid #6531b6;
-            text-align: center;
-            padding: 22px 0 13px;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #cfc9ee;
-            box-shadow: 0 -1px 16px rgba(44, 62, 80, .18);
-            letter-spacing: .01em;
-            opacity: 0;
-            animation: footer-fade-in 0.77s .4s cubic-bezier(.17,.78,.43,1.16) forwards;
-        }
-        @keyframes footer-fade-in {
-            from { opacity: 0; transform: translateY(48px);}
-            to   { opacity: 1; transform: translateY(0);}
-        }
-        .footer-link {
-            color: var(--link-main);
-            text-decoration: none;
-            transition: color .19s;
-        }
-        .footer-link:hover, .footer-link:focus {
-            color: var(--link-hover);
-            text-decoration: underline;
+            padding: 20px;
+            background: #f4f4f9;
         }
 
-        /* Light mode styles */
-        body.light-mode {
-            --primary-bg: linear-gradient(125deg, #f6f7fb 0%, #c0e4f2 100%);
-            --primary-color: #212133;
-            --card-bg: #fff;
-            --card-shadow: 0 3px 16px rgba(44, 62, 80, 0.09);
-            --accent: #3843a5;
-            --link-main: #3843a5;
-            --link-hover: #ff9e72;
-            --header-bg: #fff;
-            --border-main: #c0e4f2;
-            --footer-bg: #e9edf8;
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
         }
-        body.light-mode h1 { color: var(--accent);}
-        body.light-mode .theme-toggle-btn {
-            background: linear-gradient(130deg, #e2ceff 10%, #fafafc 100%);
-            color: #3843a5;
+
+        /* Kategoriya ro‘yxati */
+        ul.category-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 40px;
         }
-        body.light-mode .theme-toggle-btn:hover {
-            background: linear-gradient(130deg, #fafafc 60%, #a6b5ff 100%);
-            color: #b816ad;
+
+        ul.category-list li {
+            background: white;
+            padding: 12px 15px;
+            margin: 6px 0;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: 0.2s;
         }
-        body.light-mode .search-input {
-            background: #e5eaf7;
-            color: #3843a5;
+
+        ul.category-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.18);
         }
-        body.light-mode .search-input:focus {
-            background: #e1e5fa;
+
+        ul.category-list a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
-        body.light-mode .no-results {
-            background: #ffe7d8;
-            color: #6531b6;
+
+        /* Create button */
+        .create-btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 18px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
         }
-        body.light-mode ul.categories-list li {
-            background: var(--card-bg);
-            box-shadow: var(--card-shadow);
+
+        .create-btn:hover {
+            background: #45a049;
         }
-        body.light-mode ul.categories-list li:hover, body.light-mode ul.categories-list li:focus-within {
-            background: linear-gradient(90deg, #e2ceff 57%, #e9edf8 100%);
+
+        /* Texnika list */
+        .tech-card {
+            background: white;
+            padding: 15px;
+            border-radius: 7px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
-        body.light-mode footer {
-            background: var(--footer-bg);
-            color: #3843a5;
+
+        .tech-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .update-btn {
+            margin-top: 10px;
+            background: #007bff;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .update-btn:hover {
+            background: #005fcc;
         }
     </style>
-    <script>
-    // Theme toggle (dark-light)
-    document.addEventListener("DOMContentLoaded", function() {
-        const themeBtn = document.getElementById('toggle-theme-btn');
-        const body = document.body;
-        // Get and apply theme on load
-        function getTheme() {
-            return localStorage.getItem('theme') || 'dark';
-        }
-        function applyTheme(theme) {
-            if(theme === 'light') {
-                body.classList.add('light-mode');
-                themeBtn.innerHTML = '🌞 Yorug‘ rejim';
-            } else {
-                body.classList.remove('light-mode');
-                themeBtn.innerHTML = '🌜 Tungi rejim';
-            }
-        }
-        applyTheme(getTheme());
-        themeBtn.addEventListener("click", function() {
-            const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
-            localStorage.setItem('theme', newTheme);
-            applyTheme(newTheme);
-        });
-    });
-
-    // Category search filter
-    document.addEventListener("DOMContentLoaded", function () {
-        const searchInput = document.getElementById('category-search');
-        const items = document.querySelectorAll('.category-item');
-        const noResults = document.getElementById('no-results');
-        if(!searchInput) return;
-        searchInput.addEventListener('input', function() {
-            const filter = searchInput.value.trim().toLowerCase();
-            let found = 0;
-            items.forEach(function(item){
-                const name = item.dataset.name.toLowerCase();
-                if(name.includes(filter)) {
-                    item.style.display = '';
-                    found++;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-            if(found === 0) {
-                noResults.style.display = '';
-            } else {
-                noResults.style.display = 'none';
-            }
-        });
-    });
-    </script>
 </head>
 <body>
-    <header>
-        <h1>Kategoriyalar</h1>
-        <button id="toggle-theme-btn" class="theme-toggle-btn" title="Tungi/Yorug‘ rejimni almashtirish">🌜 Tungi rejim</button>
-    </header>
-    <div class="search-container">
-        <input
-            type="text"
-            id="category-search"
-            class="search-input"
-            placeholder="Kategoriyani qidirish..."
-            autocomplete="off"
-        >
-    </div>
-    <main>
-        <ul class="categories-list">
-            {% for category in categories %}
-            <li class="category-item" data-name="{{ category.name }}">
-                <a href="/category/{{ category.pk }}/" class="category-link">
-                    {{ category.name }}
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-        <div id="no-results" class="no-results" style="display: none;">
-            Hech qanday kategoriya topilmadi 😕
-        </div>
-    </main>
-    <footer>
-        &copy; {{ year|default:"2025" }} — <a href="https://github.com/QudratullaevAbduazim" class="footer-link" target="_blank">Qudratullaev Abduazim</a>. Barcha huquqlar himoyalangan.
-    </footer>
+
+<h1>Kategoriyalar</h1>
+
+<ul class="category-list">
+    {% for category in categories %}
+        <li>
+            <a href="/category/{{ category.pk }}/">{{ category.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'create_texnika' %}" class="create-btn">+ Create Texnika</a>
+
+<hr><br>
+
+{% for texnika in texnikalar %}
+<div class="tech-card">
+    <p class="tech-title">{{ texnika.name }}</p>
+
+    <a href="{% url 'update_texnika' texnika.pk %}" class="update-btn">Update</a>
+</div>
+{% endfor %}
+
 </body>
 </html>

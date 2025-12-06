@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Texnika yaratish</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+            padding: 40px;
+        }
+
+        .container {
+            width: 420px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        input:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .msg {
+            color: green;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Texnika yaratish</h1>
+
+{% if messages %}
+    {% for message in messages %}
+        <p class="msg">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Name" required>
+
+    <label>Description</label>
+    <input type="text" name="desc" placeholder="Description" required>
+
+    <label>Price</label>
+    <input type="number" name="price" placeholder="Price" required>
+
+    <label>Year</label>
+    <input type="number" name="year" placeholder="Year" required>
+
+    {% if brands %}
+        <label>Brand</label>
+        <select name="brand" required>
+            <option value="" disabled selected>— Tanlang —</option>
+            {% for b in brands %}
+                <option value="{{ b.pk }}">{{ b.name }}</option>
+            {% endfor %}
+        </select>
+    {% else %}
+        <label>Brand</label>
+        <input type="text" name="brand" placeholder="Brand" required>
+    {% endif %}
+
+    {% if categories %}
+        <label>Category</label>
+        <select name="category" required>
+            <option value="" disabled selected>— Tanlang —</option>
+            {% for c in categories %}
+                <option value="{{ c.pk }}">{{ c.name }}</option>
+            {% endfor %}
+        </select>
+    {% else %}
+        <label>Category</label>
+        <input type="text" name="category" placeholder="Category" required>
+    {% endif %}
+
+    <label>Image</label>
+    <input type="file" name="image" accept="image/*" required>
+
+    <button type="submit">Create</button>
+</form>
+
+</div>
+
+</body>
+</html>

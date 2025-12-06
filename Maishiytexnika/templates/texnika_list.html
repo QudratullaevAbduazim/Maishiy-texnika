@@ -2,334 +2,77 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>{{ category.name }} | Texnikalar</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+    <title>{{ category.name }}</title>
+
     <style>
-        :root {
-            --primary-bg: linear-gradient(135deg, #3843a5 0%, #6531b6 100%);
-            --primary-color: #f4f6ff;
-            --card-bg: #422e6b;
-            --btn-bg: #6531b6;
-            --btn-text: #f4f6ff;
-            --btn-hover: #ffd84e;
-            --accent: #e2ceff;
-        }
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', Arial, sans-serif;
-            background: var(--primary-bg);
-            color: var(--primary-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
         }
-        header {
-            text-align: center;
-            padding: 28px 0 18px;
-            position: relative;
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
         }
-        .theme-toggle-btn {
-            position: absolute;
-            top: 18px;
-            right: 24px;
-            background: linear-gradient(130deg,#353b84 65%,#6525b4 100%);
-            border: none;
-            outline: none;
-            border-radius: 50px;
-            color: #f9eeff;
-            font-size: 1.05rem;
-            padding: 8px 19px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(100,71,207,0.13);
-            transition: background .24s, color .24s, box-shadow .2s;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 0.6em;
-        }
-        .theme-toggle-btn:hover {
-            background: linear-gradient(130deg,#353b84 40%,#e2ceff 100%);
-            color: #6525b4;
-            box-shadow: 0 6px 20px rgba(124,71,207,0.16);
-        }
+
         h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 0 0 18px 0;
-            letter-spacing: .02em;
-            color: var(--accent);
-            text-shadow: 0 2px 10px rgba(44, 62, 80, .08);
+            margin-bottom: 20px;
         }
-        .search-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 22px auto 0;
-            max-width: 480px;
-            width: 100%;
-            animation: search-fade-in .95s .2s cubic-bezier(.41,.4,.46,1.26) backwards;
-        }
-        @keyframes search-fade-in {
-            from { opacity: 0; transform: scale(0.96) translateY(-24px);}
-            to   { opacity: 1; transform: scale(1) translateY(0);}
-        }
-        .search-input {
-            width: 100%;
-            padding: 13px 15px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.06rem;
-            background: #2f2353;
-            color: #faf6ff;
-            font-family: inherit;
-            box-shadow: 0 1px 7px rgba(43,29,93,.08);
-            outline: none;
-            transition: background .21s, box-shadow .28s;
-        }
-        .search-input:focus {
-            background: #3e2d6e;
-            box-shadow: 0 3px 14px rgba(124,71,207,.20);
-        }
-        .actions {
-            display: flex;
-            justify-content: center;
-            gap: 17px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-        .nav-btn {
-            background: var(--btn-bg);
-            color: var(--btn-text);
-            font-family: inherit;
-            font-size: 1.05rem;
-            font-weight: 600;
-            padding: 12px 26px;
-            border-radius: 50px;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            transition: background .22s, color .22s, box-shadow .16s, transform .14s;
-            box-shadow: 0 3px 14px rgba(100,71,207,0.13);
-            letter-spacing: .01em;
-            display: flex;
-            align-items: center;
-            gap: .53em;
-        }
-        .nav-btn:hover, .nav-btn:focus {
-            background: var(--btn-hover);
-            color: #422e6b;
-            transform: translateY(-2px) scale(1.045);
-            box-shadow: 0 6px 16px rgba(124,71,207,.16);
-        }
-        .nav-btn svg {
-            vertical-align: middle;
-            width: 1.2em;
-            height: 1.2em;
-        }
-        main {
-            flex: 1;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        ul.tech-list {
+
+        ul {
             list-style: none;
-            padding: 0 0 34px;
-            margin: 0 auto;
-            max-width: 520px;
-            width: 100%;
-            display: grid;
-            gap: 15px;
+            padding-left: 0;
         }
-        ul.tech-list li {
-            background: var(--card-bg);
-            border-radius: 13px;
-            box-shadow: 0 3px 14px rgba(44, 62, 80, .09);
-            padding: 1em 20px;
-            font-size: 1.09rem;
-            transition: box-shadow .21s, transform .19s;
-            animation: tech-fadein .7s cubic-bezier(.45,0,.47,1.3) backwards;
+
+        li {
+            background: #fafafa;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #e1e1e1;
         }
-        ul.tech-list li:nth-child(1) { animation-delay: .09s;}
-        ul.tech-list li:nth-child(2) { animation-delay: .18s;}
-        ul.tech-list li:nth-child(3) { animation-delay: .27s;}
-        ul.tech-list li:nth-child(4) { animation-delay: .36s;}
-        ul.tech-list li:nth-child(5) { animation-delay: .45s;}
-        @keyframes tech-fadein {
-            0% { opacity: 0; transform: scale(.92) translateY(35px);}
-            100% { opacity: 1; transform: scale(1) translateY(0);}
-        }
-        ul.tech-list li:hover, ul.tech-list li:focus-within {
-            box-shadow: 0 8px 20px rgba(72, 40, 135, .17);
-            transform: scale(1.03) translateY(-2px);
-        }
-        a.tech-link {
+
+        a {
             text-decoration: none;
-            font-weight: 500;
-            color: var(--accent);
-            transition: color .18s;
+            font-size: 17px;
+            color: #007bff;
         }
-        a.tech-link:hover, a.tech-link:focus {
-            color: var(--btn-hover);
+
+        a:hover {
             text-decoration: underline;
         }
-        .no-results {
-            color: #ffd84e;
-            background: #3e2d6e;
-            border-radius: 8px;
-            padding: 11px 18px;
-            font-weight: 600;
-            margin-top: 20px;
-            text-align: center;
-            animation: result-fadein .42s cubic-bezier(.44,.79,.61,1.43);
-            display: none;
-        }
-        @keyframes result-fadein {
-            from { opacity: 0; transform: scale(0.96);}
-            to   { opacity: 1; transform: scale(1);}
-        }
-        @media (max-width: 600px) {
-            h1 { font-size: 1.3rem; }
-            .search-container { max-width: 98vw; }
-            ul.tech-list { max-width: 100%; gap: 9px; }
-            ul.tech-list li { padding: 12px 9px; }
-            .nav-btn { font-size: .97rem; padding: 8px 13px;}
-        }
-        /* Light mode styles */
-        body.light-mode {
-            --primary-bg: linear-gradient(125deg, #f6f7fb 0%, #c0e4f2 100%);
-            --primary-color: #212133;
-            --card-bg: #fff;
-            --accent: #3843a5;
-            --btn-bg: #3843a5;
-            --btn-text: #fff;
-            --btn-hover: #ff9e72;
-        }
-        body.light-mode h1 { color: var(--accent);}
-        body.light-mode .theme-toggle-btn {
-            background: linear-gradient(130deg, #e2ceff 10%, #fafafc 100%);
-            color: #3843a5;
-        }
-        body.light-mode .theme-toggle-btn:hover {
-            background: linear-gradient(130deg, #fafafc 60%, #a6b5ff 100%);
-            color: #b816ad;
-        }
-        body.light-mode .search-input {
-            background: #e5eaf7;
-            color: #3843a5;
-        }
-        body.light-mode .search-input:focus {
-            background: #e1e5fa;
-        }
-        body.light-mode .no-results {
-            background: #ffe7d8;
-            color: #6531b6;
-        }
-        body.light-mode ul.tech-list li {
-            background: var(--card-bg);
-            box-shadow: 0 3px 14px rgba(44,62,80,0.09);
-        }
-        body.light-mode ul.tech-list li:hover, body.light-mode ul.tech-list li:focus-within {
-            background: linear-gradient(90deg, #e2ceff 57%, #e9edf8 100%);
+
+        .empty {
+            font-size: 16px;
+            color: #777;
         }
     </style>
-    <script>
-        // oldingi saxifaga qaytish (Back) JS
-        function goBack() {
-            window.history.back();
-        }
-        // Theme toggle
-        document.addEventListener("DOMContentLoaded", function() {
-            const themeBtn = document.getElementById('toggle-theme-btn');
-            const body = document.body;
-            function getTheme() {
-                return localStorage.getItem('theme') || 'dark';
-            }
-            function applyTheme(theme) {
-                if(theme === 'light') {
-                    body.classList.add('light-mode');
-                    themeBtn.innerHTML = '🌞 Yorug‘ rejim';
-                } else {
-                    body.classList.remove('light-mode');
-                    themeBtn.innerHTML = '🌜 Tungi rejim';
-                }
-            }
-            applyTheme(getTheme());
-            themeBtn.addEventListener("click", function() {
-                const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
-                localStorage.setItem('theme', newTheme);
-                applyTheme(newTheme);
-            });
-        });
-        // Qidiruv filteri
-        document.addEventListener("DOMContentLoaded", function () {
-            const searchInput = document.getElementById('tech-search');
-            const items = document.querySelectorAll('.tech-item');
-            const noResults = document.getElementById('no-results');
-            if(!searchInput) return;
-            searchInput.addEventListener('input', function() {
-                const filter = searchInput.value.trim().toLowerCase();
-                let found = 0;
-                items.forEach(function(item){
-                    const name = item.dataset.name.toLowerCase();
-                    if(name.includes(filter)) {
-                        item.style.display = '';
-                        found++;
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-                if(found === 0) {
-                    noResults.style.display = '';
-                } else {
-                    noResults.style.display = 'none';
-                }
-            });
-        });
-    </script>
+
 </head>
 <body>
-    <header>
-        <h1>{{ category.name }}</h1>
-        <button id="toggle-theme-btn" class="theme-toggle-btn" title="Tungi/Yorug‘ rejimni almashtirish">🌜 Tungi rejim</button>
-    </header>
-    <div class="search-container">
-        <input
-            type="text"
-            id="tech-search"
-            class="search-input"
-            placeholder="Texnikani qidirish..."
-            autocomplete="off"
-        >
-    </div>
-    <div class="actions">
-        <button class="nav-btn" onclick="window.location.href='/'" title="Bosh sahifa">
-            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 0 0-1.414 0l-7.5 7.5a1 1 0 0 0 1.414 1.414H4v7a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-7h0.793a1 1 0 1 0 1.414-1.414l-7.5-7.5ZM14 18H6v-6h8v6Zm2-8v8a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-8h0"></path></svg>
-            Bosh sahifa
-        </button>
-        <button class="nav-btn" onclick="goBack()" title="Oldingi sahifa">
-            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.707 14.707a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 0-1.414l5-5a1 1 0 1 1 1.414 1.414L6.414 9H17a1 1 0 1 1 0 2H6.414l3.293 3.293a1 1 0 0 1 0 1.414z"></path></svg>
-            Oldingi sahifa
-        </button>
-    </div>
-    <main>
-        <ul class="tech-list">
-            {% for t in texnikalar %}
-            <li class="tech-item" data-name="{{ t.name }}">
-                <a href="/products/{{ t.pk }}/" class="tech-link">
-                    {{ t.name }} &mdash; {{ t.price }} Som
+
+<div class="container">
+
+    <h1>{{ category.name }}</h1>
+
+    <ul>
+        {% for t in texnikalar %}
+            <li>
+                <a href="/products/{{ t.pk }}/">
+                    {{ t.name }} — {{ t.price }} so'm
                 </a>
             </li>
-            {% endfor %}
-        </ul>
-        <div id="no-results" class="no-results">
-            Hech qanday texnika topilmadi 😕
-        </div>
-    </main>
+        {% empty %}
+            <li class="empty">Bu kategoriyada texnika yo‘q.</li>
+        {% endfor %}
+    </ul>
+
+</div>
+
 </body>
 </html>

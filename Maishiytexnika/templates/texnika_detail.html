@@ -2,169 +2,118 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>{{ texnika.name }} | Tafsilotlar</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+    <title>{{ texnika.name }}</title>
+
     <style>
-        :root {
-            --primary-bg: linear-gradient(135deg, #3843a5 0%, #6531b6 100%);
-            --primary-color: #f4f6ff;
-            --card-bg: #422e6b;
-            --btn-bg: #6531b6;
-            --btn-text: #f4f6ff;
-            --btn-hover: #ffd84e;
-            --accent: #ffd84e;
-        }
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', Arial, sans-serif;
-            background: var(--primary-bg);
-            color: var(--primary-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 40px;
         }
-        header {
-            text-align: center;
-            padding: 28px 0 18px;
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
+
+        .messages {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eaf7ff;
+            border-left: 5px solid #2196f3;
+            border-radius: 6px;
+        }
+
         h1 {
-            font-size: 2.1rem;
-            font-weight: 700;
-            margin: 0 0 13px 0;
-            color: var(--accent);
-            text-shadow: 0 2px 10px rgba(44,62,80,.09);
+            margin-bottom: 15px;
         }
-        .actions {
-            display: flex;
-            justify-content: center;
-            gap: 17px;
-            margin-bottom: 22px;
-            flex-wrap: wrap;
+
+        img {
+            width: 300px;
+            border-radius: 10px;
+            margin-top: 15px;
         }
-        .nav-btn {
-            background: var(--btn-bg);
-            color: var(--btn-text);
-            font-family: inherit;
-            font-size: 1.03rem;
-            font-weight: 600;
-            padding: 10px 22px;
-            border-radius: 50px;
-            border: none;
-            outline: none;
+
+        .info p {
+            font-size: 17px;
+            margin: 6px 0;
+        }
+
+        .btn-box {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 18px;
+            font-size: 15px;
             cursor: pointer;
-            transition: background .22s, color .22s, box-shadow .16s, transform .14s;
-            box-shadow: 0 3px 14px rgba(100,71,207,0.13);
-            letter-spacing: .01em;
-            display: flex;
-            align-items: center;
-            gap: .6em;
+            border: none;
+            border-radius: 6px;
+            margin-right: 10px;
         }
-        .nav-btn:hover, .nav-btn:focus {
-            background: var(--btn-hover);
-            color: #422e6b;
-            transform: translateY(-1px) scale(1.03);
-            box-shadow: 0 6px 16px rgba(124,71,207,.16);
+
+        .update-btn {
+            background: #0275d8;
+            color: white;
         }
-        .nav-btn svg {
-            vertical-align: middle;
-            width: 1.2em;
-            height: 1.2em;
+
+        .update-btn:hover {
+            background: #025aa5;
         }
-        main {
-            flex: 1;
+
+        .delete-btn {
+            background: #d9534f;
+            color: white;
         }
-        .product-card {
-            background: var(--card-bg);
-            border-radius: 17px;
-            box-shadow: 0 4px 22px rgba(44,62,80,.12);
-            margin: 0 auto;
-            margin-bottom: 36px;
-            max-width: 470px;
-            padding: 2.2em 2em 2em 2em;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: product-fadein .7s cubic-bezier(.45,0,.47,1.1) backwards;
-        }
-        @keyframes product-fadein {
-            0% { opacity: 0; transform: scale(.92) translateY(32px);}
-            100% { opacity: 1; transform: scale(1) translateY(0);}
-        }
-        .product-meta {
-            text-align: left;
-            width: 100%;
-            margin-bottom: 13px;
-        }
-        .product-meta p {
-            margin: 10px 0;
-            font-size: 1.08rem;
-            letter-spacing: .01em;
-        }
-        .product-meta p span {
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: .02em;
-        }
-        .product-image {
-            margin: 0 0 11px 0;
-            text-align: center;
-        }
-        .product-image img {
-            border-radius: 17px;
-            box-shadow: 0 2px 10px rgba(44, 62, 80, .15);
-            max-width: 310px;
-            width: 100%;
-            height: auto;
-            animation: product-img-in .6s cubic-bezier(.41,.6,.58,1.28) backwards;
-        }
-        @keyframes product-img-in {
-            0% { opacity: 0; transform: scale(.96) translateY(19px);}
-            100% { opacity: 1; transform: scale(1) translateY(0);}
-        }
-        @media (max-width: 600px) {
-            h1 { font-size: 1.1rem; }
-            .product-card { max-width: 98vw; padding: 1.3em .8em 1em .8em;}
-            .nav-btn { font-size: .95rem; padding: 8px 14px;}
+
+        .delete-btn:hover {
+            background: #b52b27;
         }
     </style>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
 </head>
 <body>
-    <header>
-        <h1>{{ texnika.name }}</h1>
-    </header>
-    <div class="actions">
-        <button class="nav-btn" onclick="window.location.href='/'" title="Bosh sahifa">
-            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 0 0-1.414 0l-7.5 7.5a1 1 0 0 0 1.414 1.414H4v7a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-7h0.793a1 1 0 1 0 1.414-1.414l-7.5-7.5ZM14 18H6v-6h8v6Zm2-8v8a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-8h0"></path></svg>
-            Bosh sahifa
-        </button>
-        <button class="nav-btn" onclick="goBack()" title="Oldingi sahifa">
-            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.707 14.707a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 0-1.414l5-5a1 1 0 1 1 1.414 1.414L6.414 9H17a1 1 0 1 1 0 2H6.414l3.293 3.293a1 1 0 0 1 0 1.414z"></path></svg>
-            Oldingi sahifa
-        </button>
+
+<div class="container">
+
+    {% if messages %}
+        <div class="messages">
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <h1>{{ texnika.name }}</h1>
+
+    <div class="info">
+        <p><b>Brand:</b> {{ texnika.brand.name }}</p>
+        <p><b>Kategoriya:</b> {{ texnika.category.name }}</p>
+        <p><b>Yil:</b> {{ texnika.year }}</p>
+        <p><b>Narx:</b> {{ texnika.price }} SO'M</p>
+        <p><b>Izoh:</b> {{ texnika.desc }}</p>
     </div>
-    <main>
-        <section class="product-card">
-            <div class="product-meta">
-                <p><span>Brand:</span> {{ texnika.brand.name }}</p>
-                <p><span>Category:</span> {{ texnika.category.name }}</p>
-                <p><span>Year:</span> {{ texnika.year }}</p>
-                <p><span>Narxi:</span> {{ texnika.price }} SO'M</p>
-                <p><span>Izoh:</span> {{ texnika.desc }}</p>
-            </div>
-            {% if texnika.image %}
-            <div class="product-image">
-                <img src="{{ texnika.image.url }}" alt="{{ texnika.name }}">
-            </div>
-            {% endif %}
-        </section>
-    </main>
+
+    {% if texnika.image %}
+        <img src="{{ texnika.image.url }}" alt="{{ texnika.name }}">
+    {% endif %}
+
+    <div class="btn-box">
+        <form action="{% url 'update_texnika' texnika.pk %}" method="get" style="display:inline;">
+            <button class="update-btn" type="submit">Update</button>
+        </form>
+
+        <form action="{% url 'delete_texnika' texnika.pk %}" method="get" style="display:inline;">
+            <button class="delete-btn" type="submit">Delete</button>
+        </form>
+    </div>
+
+</div>
+
 </body>
 </html>

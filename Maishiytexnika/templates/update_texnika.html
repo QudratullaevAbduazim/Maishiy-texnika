@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Car</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        form input[type="text"],
+        form input[type="number"],
+        form input[type="file"] {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.25s;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        img {
+            display: block;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+
+        .messages {
+            margin-bottom: 20px;
+        }
+
+        .messages p {
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Update Car</h1>
+
+    <!-- Messages -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input type="text" name="name" placeholder="Name" value="{{ texnika.name }}" required>
+        <input type="text" name="desc" placeholder="Description" value="{{ texnika.desc }}" required>
+        <input type="text" name="price" placeholder="Price" value="{{ texnika.price }}" required>
+        <input type="number" name="year" placeholder="Year" value="{{ texnika.year }}" required>
+
+        {% if texnika.image %}
+            <p>Current image:</p>
+            <img src="{{ texnika.image.url }}" alt="{{ texnika.name }}" width="150">
+        {% endif %}
+        <input type="file" name="image">
+
+        <input type="number" name="brand" placeholder="Brand ID" value="{{ texnika.brand_id }}" required>
+        <input type="number" name="category" placeholder="Category ID" value="{{ texnika.category_id }}" required>
+
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+</body>
+</html>
